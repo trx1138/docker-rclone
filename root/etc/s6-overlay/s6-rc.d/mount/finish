@@ -4,7 +4,5 @@ unmount() { if findmnt "$1" | grep -q fuse; then fusermount -uz "$1" ; fi }
 
 # unmount fuse
 unmount /data
-if [ "$POOLING_2ND" = "true" ]; then
-    unmount /data2
-fi
+[[ -n "${POOLING_2ND:-}" ]] && unmount /data2
 [[ -n "${POOLING_FS:-}" ]] && unmount /cloud
