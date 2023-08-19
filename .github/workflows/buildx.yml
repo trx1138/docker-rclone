@@ -10,8 +10,8 @@ on:
   pull_request:
 
 env:
-  DOCKERHUB_USER: wiserain
-  IMAGE_NAME: wiserain/rclone
+  DOCKERHUB_USER: trx1138
+  IMAGE_NAME: trx1138/rclone
 
 jobs:
   buildx:
@@ -110,18 +110,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASS }}
           repository: ${{ env.IMAGE_NAME }}
           short-description: ${{ steps.vars.outputs.github_desc }}
-      -
-        name: Notification
-        uses: sarisia/actions-status-discord@v1
-        if: env.X_SKIP == 'false' && always()
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          status: ${{ job.status }}
-          description: |
-            ${{ env.IMAGE_NAME }}:${{ matrix.rclone-type }}
-            ${{ env.IMAGE_NAME }}:${{ env.APP_VER }}
-            ghcr.io/${{ env.IMAGE_NAME }}:${{ matrix.rclone-type }}
-            ghcr.io/${{ env.IMAGE_NAME }}:${{ env.APP_VER }}
 
   buildx-on-pr:
     runs-on: ubuntu-22.04
@@ -197,15 +185,3 @@ jobs:
           build-args: |
             RCLONE_TYPE=${{ matrix.rclone-type }}
           push: true
-      -
-        name: Notification
-        uses: sarisia/actions-status-discord@v1
-        if: env.X_SKIP == 'false' && always() && github.actor == github.event.repository.owner.login
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          status: ${{ job.status }}
-          description: |
-            ${{ env.IMAGE_NAME }}:testing-${{ matrix.rclone-type }}
-            ${{ env.IMAGE_NAME }}:testing-${{ matrix.rclone-type }}-${{ github.event.pull_request.number }}
-            ghcr.io/${{ env.IMAGE_NAME }}:testing-${{ matrix.rclone-type }}
-            ghcr.io/${{ env.IMAGE_NAME }}:testing-${{ matrix.rclone-type }}-${{ github.event.pull_request.number }}

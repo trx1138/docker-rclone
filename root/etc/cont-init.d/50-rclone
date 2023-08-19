@@ -75,7 +75,7 @@ fi
 
 # permissions
 chown -R abc:abc \
-    /config /log /cloud /data
-chown abc:abc /cache /local
+    /config /log /cloud /data /data2
+chown abc:abc /cache /local /local2
 
 echo "*** rclone v$(rclone version | head -n1 | cut -f2 -dv) ready!"

@@ -52,7 +52,9 @@ RUN \
         /bar/log \
         /bar/cloud \
         /bar/data \
+        /bar/data2 \
         /bar/local \
+        /bar/local2 \
         && \
     echo "**** permissions ****" && \
     chmod a+x \
@@ -79,8 +81,8 @@ RUN \
 # RELEASE
 # 
 FROM base
-LABEL maintainer="wiserain"
-LABEL org.opencontainers.image.source https://github.com/wiserain/docker-rclone
+LABEL maintainer="trx1138"
+LABEL org.opencontainers.image.source https://github.com/trx1138/docker-rclone
 
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG APT_MIRROR="archive.ubuntu.com"
@@ -131,7 +133,7 @@ ENV \
     KEEP_EMPTY_DIRS=0 \
     DATE_FORMAT="+%4Y/%m/%d %H:%M:%S"
 
-VOLUME /config /cache /log /cloud /data /local
+VOLUME /config /cache /log /cloud /data /data2 /local /local2
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=10s --retries=3 \
     CMD /usr/local/bin/healthcheck
