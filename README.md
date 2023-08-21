@@ -6,6 +6,8 @@ Docker image for [rclone](https://rclone.org/) mount with
 - pooling filesystem (a choice of mergerfs or unionfs)
 - some useful scripts
 
+## private fork of [wiserain/docker](https://github.com/wiserain/docker-rclone) to support additional poolingfs mount
+
 ## Usage
 
 ```yaml
