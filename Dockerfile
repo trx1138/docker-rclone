@@ -133,7 +133,7 @@ ENV \
     KEEP_EMPTY_DIRS=0 \
     DATE_FORMAT="+%4Y/%m/%d %H:%M:%S"
 
-VOLUME /config /cache /log /cloud /data /data2 /local /local2
+VOLUME /config /cache /log
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=10s --retries=3 \
     CMD /usr/local/bin/healthcheck
