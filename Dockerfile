@@ -1,4 +1,4 @@
-ARG UBUNTU_VER=22.04
+ARG UBUNTU_VER=24.04
 
 FROM ghcr.io/by275/base:ubuntu AS prebuilt
 FROM ghcr.io/by275/base:ubuntu${UBUNTU_VER} AS base
@@ -128,6 +128,8 @@ ENV \
     RCLONE_REFRESH_METHOD=default \
     RCLONE_REFRESH_BRACE_EXPANSION=0 \
     RCLONE_REFRESH_ON_MOUNT_REPEAT=1 \
+    UFS_BRANCHES="/local=RW:/cloud=RO" \
+    MFS_BRANCHES="/local=RW:/cloud=NC" \
     UFS_USER_OPTS="cow,direct_io,nonempty,auto_cache,sync_read" \
     MFS_USER_OPTS="rw,use_ino,func.getattr=newest,category.action=all,category.create=ff,cache.files=auto-full,dropcacheonclose=true" \
     KEEP_EMPTY_DIRS=0 \
