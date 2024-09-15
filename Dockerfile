@@ -82,7 +82,7 @@ RUN \
 # 
 FROM base
 LABEL maintainer="trx1138"
-LABEL org.opencontainers.image.source https://github.com/trx1138/docker-rclone
+LABEL org.opencontainers.image.source="https://github.com/trx1138/docker-rclone"
 
 ARG DEBIAN_FRONTEND="noninteractive"
 ARG APT_MIRROR="archive.ubuntu.com"
